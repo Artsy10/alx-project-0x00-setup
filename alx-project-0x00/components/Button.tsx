@@ -1,33 +1,21 @@
-import React from 'react';
+// components/Button.tsx
+import React from "react";
 
-type ButtonProps = {
+interface ButtonProps {
   title: string;
-  size?: 'small' | 'medium' | 'large';
-  shape?: 'rounded-sm' | 'rounded-md' | 'rounded-full';
+  size: "small" | "medium" | "large";
+  shape: "rounded-sm" | "rounded-md" | "rounded-full";
+}
+
+const sizeClasses = {
+  small: "px-3 py-1 text-sm",
+  medium: "px-4 py-2 text-base",
+  large: "px-5 py-3 text-lg",
 };
 
-const Button: React.FC<ButtonProps> = ({ title, size = 'medium', shape = 'rounded-md' }) => {
-  let padding = '';
-  let fontSize = '';
-
-  // Set padding and font size based on size prop
-  switch (size) {
-    case 'small':
-      padding = 'px-3 py-1';
-      fontSize = 'text-sm';
-      break;
-    case 'medium':
-      padding = 'px-4 py-2';
-      fontSize = 'text-base';
-      break;
-    case 'large':
-      padding = 'px-6 py-3';
-      fontSize = 'text-lg';
-      break;
-  }
-
+const Button: React.FC<ButtonProps> = ({ title, size, shape }) => {
   return (
-    <button className={`bg-blue-600 text-white ${padding} ${fontSize} ${shape}`}>
+    <button className={`bg-blue-600 text-white ${sizeClasses[size]} ${shape}`}>
       {title}
     </button>
   );
